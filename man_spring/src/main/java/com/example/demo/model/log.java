@@ -5,9 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class bath {
+public class log {
 	private int id;
-	private int temp;
-	private int waterleve;
-	private int cap;
+	private int bathid;
+	private String time;
+	private String log;
+
 }

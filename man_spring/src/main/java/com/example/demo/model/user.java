@@ -5,9 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class bath {
+public class user {
 	private int id;
-	private int temp;
-	private int waterleve;
-	private int cap;
+	private String userkey;
+	private int bathid;
+
 }

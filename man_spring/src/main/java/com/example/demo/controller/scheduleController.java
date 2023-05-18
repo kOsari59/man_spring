@@ -1,34 +1,33 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
+import org.apache.ibatis.ognl.ASTThisVarRef;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.mapper.scheduleMapper;
-import com.example.demo.model.UserProfile;
-import com.example.demo.model.scedule;
+import com.example.demo.mapper.ScheduleMapper;
+import com.example.demo.model.bath_info;
+import com.example.demo.model.schedule;
 
 @RestController
-public class scheduleController {
-	private scheduleMapper mapper;
+public class ScheduleController {
+	private ScheduleMapper mapper;
 	
-	public scheduleController (scheduleMapper mapper) {
-		this.mapper = mapper;
-		
-	}
-	
-	@PostMapping("/schedule")
-	public void postUserSchedule(@RequestBody scedule scedule) {
-		mapper.insertUserSchedule(scedule.getUser_id(),scedule.getBath_id(),scedule.getH_valve(),scedule.getC_valve(),scedule.getTemp(),scedule.getWater_level(),scedule.getSpkler(),scedule.getCap(),scedule.getFan_onoff(),scedule.getFan_speed(),scedule.getHeat(),scedule.getLed_onoff(),scedule.getLed_color(),scedule.getLed_bright());
+	public ScheduleController(ScheduleMapper mappper) {
+		this.mapper = mappper;
 	}
 	
 	@GetMapping("/schedule/{id}")
-	public List<scedule> getSchedule(@PathVariable("id") String id) {
-		return mapper.selectScedule(id);
+	public schedule getBath(@PathVariable("id") String id) {
+		return mapper.getSchedule(id);
 	}
+	
+	@PostMapping("/schedule")
+	public void insertbathinfo(@RequestBody schedule model) {
+		mapper.insertschedule(model.getUserid(),model.getBathid(),model.getTemp(),model.getWaterlevel(),model.getCleantime(),model.getStarttime());
+	}
+
 
 }
